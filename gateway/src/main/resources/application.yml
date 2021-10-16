@@ -18,8 +18,12 @@ spring:
         enabled: false
     gateway:
       routes:
-        - id: web-service
+        - id: login-service
+          uri: http://localhost:9901
+          predicates:
+            - Path=/lservice/**
+
+        - id: register-service
           uri: http://localhost:9902
           predicates:
-            - Path=/test/**
-
+            - Path=/rservice/**

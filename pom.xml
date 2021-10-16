@@ -18,13 +18,13 @@
             eureka
         </module>
         <module>
-            server
+            login
         </module>
         <module>
             gateway
         </module>
         <module>
-            web
+            register
         </module>
    </modules>
 

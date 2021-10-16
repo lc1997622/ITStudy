@@ -1,5 +1,5 @@
 server:
-  port: 9901
+  port: 9902
 
 eureka:
   instance:
@@ -11,7 +11,7 @@ eureka:
 
 spring:
   application:
-    name: login-service
+    name: register-service
   cloud:
     loadbalancer:
       retry:
@@ -22,6 +22,5 @@ spring:
     password: lc1997622
     driver-class-name: com.mysql.jdbc.Driver
 mybatis:
-  type-aliases-package: com.example.login.entity
+  type-aliases-package: com.example.register.entity
   mapper-locations: classpath:mapper/*.xml
-

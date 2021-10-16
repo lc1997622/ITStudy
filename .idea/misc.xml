@@ -6,11 +6,9 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/eureka/pom.xml" />
-        <option value="$PROJECT_DIR$/server/pom.xml" />
-        <option value="$PROJECT_DIR$/web/pom.xml" />
         <option value="$PROJECT_DIR$/gateway/pom.xml" />
-        <option value="$PROJECT_DIR$/register/pom.xml" />
         <option value="$PROJECT_DIR$/login/pom.xml" />
+        <option value="$PROJECT_DIR$/register/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
