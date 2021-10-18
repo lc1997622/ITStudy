@@ -21,6 +21,13 @@ spring:
     username: root
     password: lc1997622
     driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+  session:
+    store-type: redis
+
 mybatis:
   type-aliases-package: com.example.login.entity
   mapper-locations: classpath:mapper/*.xml

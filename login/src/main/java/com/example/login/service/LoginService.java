@@ -2,6 +2,7 @@ package com.example.login.service;
 
 import com.example.login.dao.LoginDao;
 import com.example.login.entity.Msg;
+import com.example.login.utils.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,9 @@ public class LoginService {
     private static final String REGEX_PHONENUMBER = "^((17[0-9])|(14[0-9])|(13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
     private static final String REGEX_PASSWORD = "^(?![A-Za-z0-9]+$)(?![a-z0-9\\W]+$)(?![A-Za-z\\W]+$)(?![A-Z0-9\\W]+$)[a-zA-Z0-9\\W]{8,}$";
 
+    @Autowired
+    private RedisUtil redisUtil;
+
     public Msg login(Map<String,String> loginInfo){
         String phonenumber = loginInfo.get("phoneNumber");
         String password = loginInfo.get("password");
@@ -39,8 +43,19 @@ public class LoginService {
         }
 
         try {
-            pw = loginDao.login(phonenumber);
+            String key = "usr" + phonenumber;
+            if(redisUtil.hasKey(key)){
+                pw = (String) redisUtil.get(key);
+                System.out.println("查询缓存pw:");
+                System.out.println(pw);
+            }
+            else {
+                pw = loginDao.login(phonenumber);
+                System.out.println("查询数据库:");
+                System.out.println(redisUtil.set(key,pw) ? "插入成功" : "插入失败");
+            }
         }catch (Exception e){
+            e.printStackTrace();
             msg.setStatus(500);
             msg.setMsg("登录失败");
             return msg;
