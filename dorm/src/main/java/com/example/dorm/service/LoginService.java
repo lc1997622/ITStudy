@@ -1,20 +1,15 @@
-package com.example.login.service;
+package com.example.dorm.service;
 
-import com.example.login.dao.LoginDao;
-import com.example.login.entity.Msg;
-import com.example.login.utils.RedisUtil;
+import com.example.dorm.dao.LoginDao;
+import com.example.dorm.entity.Msg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
 import org.springframework.util.DigestUtils;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.regex.Pattern;
-
 import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * @author ：LiChao
@@ -32,8 +27,6 @@ public class LoginService {
     private static final String REGEX_PHONENUMBER = "^((17[0-9])|(14[0-9])|(13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
     private static final String REGEX_PASSWORD = "^(?![A-Za-z0-9]+$)(?![a-z0-9\\W]+$)(?![A-Za-z\\W]+$)(?![A-Z0-9\\W]+$)[a-zA-Z0-9\\W]{8,}$";
 
-    @Autowired
-    private RedisUtil redisUtil;
 
     public Msg login(HttpServletResponse response, Map<String, String> loginInfo){
 
@@ -48,21 +41,8 @@ public class LoginService {
         }
 
         try {
-//            String key = "usr" + phonenumber;
-//            if(redisUtil.hasKey(key)){
-//                pw = (String) redisUtil.get(key);
-//                System.out.println("查询缓存pw:");
-//                System.out.println(pw);
-//            }
-//            else {
-//                pw = loginDao.login(phonenumber);
-//                System.out.println("查询数据库:");
-//                System.out.println(redisUtil.set(key,pw) ? "插入成功" : "插入失败");
-//            }
+            //
             pw = loginDao.login(phonenumber);
-            Cookie cookie = new Cookie("phoneNumber",phonenumber);
-            cookie.setMaxAge(7 * 24 * 60 * 60);
-            response.addCookie(cookie);
         }catch (Exception e){
             e.printStackTrace();
             msg.setStatus(500);

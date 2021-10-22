@@ -1,23 +1,23 @@
 server:
   port: 9902
 
-eureka:
-  instance:
-    preferIpAddress: true
-    instance-id: ${spring.cloud.client.ip-address}:${server.port}
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:9900/eureka/
+#eureka:
+#  instance:
+#    preferIpAddress: true
+#    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:9900/eureka/
 
 spring:
   application:
     name: register-service
-  cloud:
-    loadbalancer:
-      retry:
-        enabled: false
+#  cloud:
+#    loadbalancer:
+#      retry:
+#        enabled: false
   datasource:
-    url: jdbc:mysql://localhost:3306/itstudy?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://mysql:3306/itstudy?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: lc1997622
     driver-class-name: com.mysql.jdbc.Driver
